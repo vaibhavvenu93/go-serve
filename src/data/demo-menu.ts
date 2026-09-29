@@ -1,0 +1,13 @@
+import type { MenuItem } from "@/types";
+const regular = [{ id: "regular", name: "Regular", priceDelta: 0 }];
+const records = [
+  { id: "paneer-bowl", name: "Paneer Tikka Rice Bowl", description: "Charred paneer, fragrant rice, pickled onion and mint chutney.", category: "BOWLS", price: 17900, vegetarian: true, rating: 4.8, prepMinutes: 5, deliveryMinutes: 12, popular: true, tags: ["Tandoor", "Bestseller"] },
+  { id: "chicken-biryani", name: "Chicken Biryani", description: "Dum-cooked chicken and basmati rice with cooling raita.", category: "BIRYANI", price: 22900, vegetarian: false, rating: 4.7, prepMinutes: 4, deliveryMinutes: 11, popular: true, tags: ["Dum cooked"] },
+  { id: "rajma-chawal", name: "Rajma Chawal", description: "Slow-cooked kidney beans over steamed basmati rice.", category: "BOWLS", price: 14900, vegetarian: true, rating: 4.6, prepMinutes: 4, deliveryMinutes: 10, popular: true, tags: ["Comfort food"] },
+  { id: "masala-dosa", name: "Masala Dosa", description: "Crisp dosa, spiced potato, sambar and coconut chutney.", category: "SOUTH_INDIAN", price: 12900, vegetarian: true, rating: 4.5, prepMinutes: 7, deliveryMinutes: 15, popular: false, tags: ["Made to order"] },
+  { id: "chole-bowl", name: "Chole Rice Bowl", description: "Punjabi chickpeas, rice and a squeeze of lime.", category: "BOWLS", price: 14900, vegetarian: true, rating: 4.6, prepMinutes: 4, deliveryMinutes: 11, popular: false, tags: ["Homestyle"] },
+  { id: "egg-bowl", name: "Egg Bhurji Bowl", description: "Soft scrambled eggs with onion, tomato and jeera rice.", category: "BOWLS", price: 15900, vegetarian: false, rating: 4.5, prepMinutes: 5, deliveryMinutes: 12, popular: false, tags: ["Contains egg"] },
+  { id: "butter-chicken", name: "Butter Chicken Rice", description: "Tandoori chicken in tomato butter gravy, with basmati rice.", category: "BOWLS", price: 21900, vegetarian: false, rating: 4.8, prepMinutes: 5, deliveryMinutes: 12, popular: true, tags: ["Mild", "Tandoor"] },
+  { id: "chaas", name: "Masala Chaas", description: "Chilled buttermilk with roasted cumin and fresh coriander.", category: "DRINKS", price: 4900, vegetarian: true, rating: 4.6, prepMinutes: 1, deliveryMinutes: 10, popular: false, tags: ["250 ml"] },
+] satisfies Omit<MenuItem, "variants" | "addons" | "image" | "available">[];
+export const demoMenu: MenuItem[] = records.map(item => ({ ...item, available: true, variants: regular.map(v => ({ ...v })), addons: item.id === "paneer-bowl" ? [{ id: "extra-mint", name: "Extra mint chutney", price: 1000, available: true }] : [], image: { src: null, alt: item.name, width: 1200, height: 900, treatment: "PLACEHOLDER" } }));

@@ -1,0 +1,15 @@
+{
+  "name": "go-serve-cluster-zero",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts"
+  },
+  "dependencies": { "next": "^15.5.0", "react": "^19.1.0", "react-dom": "^19.1.0", "framer-motion": "^12.23.0" },
+  "devDependencies": { "typescript": "^5.9.0", "@types/node": "^22.0.0", "@types/react": "^19.1.0", "@types/react-dom": "^19.1.0", "eslint": "^9.0.0", "eslint-config-next": "^15.5.0", "@eslint/eslintrc": "^3.3.0", "tsx": "^4.20.0" }
+}

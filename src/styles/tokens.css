@@ -1,0 +1,15 @@
+:root {
+  --porcelain: #F5F2EA; --warm-white: #FCFBF7; --ink: #111310; --muted-ink: #686B64;
+  --green: #175C45; --deep-green: #0D3C2D; --soft-green: #DCE9E2;
+  --amber: #D89432; --red: #C74A3A; --kitchen-black: #0C0E0D; --kitchen-surface: #141715;
+  --hairline: rgba(17,19,16,.10);
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px;
+  --space-6: 24px; --space-7: 32px; --space-10: 40px; --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
+  --radius-sm: 10px; --radius-md: 18px; --radius-lg: 26px;
+  --text-display-xl: clamp(5.5rem, 10.5vw, 10rem); --text-display-lg: clamp(3rem, 6vw, 6rem);
+  --text-headline: clamp(2.25rem, 4vw, 4rem); --text-title: 1.625rem;
+  --text-body-lg: 1.125rem; --text-body: 1rem; --text-label: .875rem; --text-metadata: .75rem;
+  --text-metric-xl: clamp(4rem, 8vw, 8rem); --text-metric-lg: clamp(2.5rem, 5vw, 4.5rem);
+  --page-gutter: clamp(24px, 5vw, 80px); --motion-fast: 180ms ease; --motion-arrive: 600ms cubic-bezier(.2,.8,.2,1);
+  --shadow-utility: 0 12px 40px rgba(17,19,16,.10);
+}

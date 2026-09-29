@@ -1,0 +1,12 @@
+"use client";
+import { useEffect, useRef } from "react";
+import { useDemo } from "@/context/demo-provider";
+import { selectCustomerOrder } from "@/lib/customer-order";
+import { formatMoney } from "@/lib/format";
+import styles from "./customer-order.module.css";
+export function CustomerOrder({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const demo = useDemo(), order = selectCustomerOrder(demo);
+  const dialog = useRef<HTMLDialogElement>(null), trigger = useRef<HTMLElement | null>(null);
+  useEffect(() => { if (open) { trigger.current = document.activeElement as HTMLElement; dialog.current?.showModal(); } else dialog.current?.close(); }, [open]);
+  return <dialog ref={dialog} className={styles.sheet} aria-labelledby="customer-order-title" onClose={() => { onClose(); if (trigger.current?.isConnected) trigger.current.focus({ preventScroll: true }); }} onClick={event => { if (event.currentTarget === event.target) dialog.current?.close(); }}><div className={styles.inner}><div className={styles.top}><span>GO SERVE · {demo.currentOrder.id} · DEMO</span><button aria-label="Close order" onClick={() => dialog.current?.close()}>×</button></div><h2 id="customer-order-title">{order.placed ? order.stage : "Your usual,\nfreshly made."}</h2><p>{order.completed ? "Dinner is with you. Enjoy, Aarav." : order.placed ? order.delayed ? "Your delivery estimate has changed. We’re coordinating preparation and pickup." : "We’re keeping your kitchen and pickup in sync." : "One bowl, made nearby. Ready for your evening."}</p><dl><div><dt>Dinner</dt><dd>{order.dish} ×1</dd></div><div><dt>Just how you like it</dt><dd>Medium spice · Extra mint chutney</dd></div><div><dt>Deliver to</dt><dd>{demo.currentOrder.address.line1}<br />{demo.currentOrder.address.locality}</dd></div><div><dt>Total</dt><dd>{formatMoney(demo.currentOrder.total)}</dd></div>{order.placed && <><div><dt>Promised by</dt><dd>{order.promise}</dd></div><div><dt>{order.completed ? "Delivered at" : "Current estimate"}</dt><dd>{order.estimate ?? "Planning pickup"}</dd></div><div><dt>{demo.deliveryAssignment ? "Your rider" : "Scheduled rider"}</dt><dd>{order.rider}</dd></div></>}</dl>{!order.placed && <button className={styles.primary} onClick={demo.openKitchenRush}>Place demo order · {formatMoney(demo.currentOrder.total)} <span>→</span></button>}{order.placed && <p className={styles.status} role="status">{order.stage}{!order.completed && order.minutes !== null ? ` · about ${order.minutes} min` : " · complete"}</p>}</div></dialog>;
+}
